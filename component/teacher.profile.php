@@ -1,6 +1,8 @@
 <?php include_once('layout/teacher.nav.php'); ?>
 <?php $Teacher = TeacherActionClass::getDataID($_SESSION['uid']); ?>
 
+<?php if(isset($_POST['btnSavePassword'])) TeacherActionClass::updatePassword($_SESSION['uid'], $_POST['password']);?>
+
 <hr>
 <div class="container">
     <div class="row">
@@ -12,11 +14,11 @@
                     <input type="text" disabled class="form-control form-control-sm" value="<?php echo $Teacher[0]['Tc_user'] ?>">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label"> <i class="fa-solid fa-lock"></i> แก้ไขข้อรหัสผ่าน</label>
-                    <input type="password" class="form-control form-control-sm" placeholder="*******">
+                    <label for="exampleInputPassword1" class="form-label"> <i class="fa-solid fa-lock"></i> แก้ไขรหัสผ่าน</label>
+                    <input type="password" name="password" class="form-control form-control-sm" placeholder="*******">
                 </div>
                 <hr>
-                <button type="submit" class="btn btn-primary w-100">แก้ไขรหัสผ่าน</button>
+                <button type="submit" name="btnSavePassword" class="btn btn-primary w-100">แก้ไขรหัสผ่าน</button>
             </form>
 
         </div>

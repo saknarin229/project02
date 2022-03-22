@@ -83,4 +83,11 @@ class TeacherActionClass extends db_connect {
         }
         echo "<script>window.location.href='?op={$_GET['op']}&id={$_GET['id']}'</script>";
     }
+
+    static public function updatePassword($id, $password){
+        $sql = "UPDATE teacher_table SET Tc_password = ? WHERE Tc_user = ?";
+        $data = array($password, $id);
+        self::ExecuteData($sql, $data);
+        echo "<script>alert('แก้ไขรหัสผ่านเรียบร้อย');</script>";
+    }
 }

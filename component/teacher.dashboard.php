@@ -1,4 +1,1 @@
-
-<?php include_once('layout/teacher.nav.php');?>
-
-teacher.dashboard
+<?php include_once('component/teacher.profile.php');?>
