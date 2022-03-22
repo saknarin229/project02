@@ -12,16 +12,16 @@ class studentActionClass extends db_connect {
     }
 
     static private function insertData(){
-        $sql = "INSERT INTO student_table(Std_user, Std_password, Std_firstname, Std_lastname, Std_sex, Std_yearOfStudent) VALUES (?,?,?,?,?,?)";
-        $data = array($_POST['Std_user'], $_POST['Std_user'], $_POST['Std_firstname'], $_POST['Std_lastname'], $_POST['Std_sex'], $_POST['Std_yearOfStudent']);
+        $sql = "INSERT INTO student_table(Std_user, Std_password, Std_firstname, Std_lastname, Std_sex, Std_yearOfStudent, yearClass) VALUES (?,?,?,?,?,?,?)";
+        $data = array($_POST['Std_user'], $_POST['Std_user'], $_POST['Std_firstname'], $_POST['Std_lastname'], $_POST['Std_sex'], $_POST['Std_yearOfStudent'], $_POST['yearClass']);
         self::ExecuteData($sql, $data);
         self::uploadImage($_FILES['myfile'], $_POST['Std_user']);
         echo "<script>alert('บันทึกข้อมูลสำเร็จ');window.location.href='?op=admin-add-student'</script>";
     }
 
     static private function updateData($id){
-        $sql = "UPDATE student_table SET Std_user=?,Std_password=?,Std_firstname=?,Std_lastname=?,Std_sex=?,Std_yearOfStudent=? WHERE Std_user=?";
-        $data = array($_POST['Std_user'], $_POST['Std_user'], $_POST['Std_firstname'], $_POST['Std_lastname'], $_POST['Std_sex'], $_POST['Std_yearOfStudent'], $id);
+        $sql = "UPDATE student_table SET Std_user=?,Std_password=?,Std_firstname=?,Std_lastname=?,Std_sex=?,Std_yearOfStudent=?, yearClass=? WHERE Std_user=?";
+        $data = array($_POST['Std_user'], $_POST['Std_user'], $_POST['Std_firstname'], $_POST['Std_lastname'], $_POST['Std_sex'], $_POST['Std_yearOfStudent'], $_POST['yearClass'], $id);
         self::ExecuteData($sql, $data);
         self::uploadImage($_FILES['myfile'], $_POST['Std_user']);
         echo "<script>alert('แก้ไขข้อมูลสำเร็จ');window.location.href='?op=admin-add-student'</script>";

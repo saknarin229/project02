@@ -13,4 +13,12 @@ class courseActionClass extends db_connect {
         $data = array($id);
         return self::getExecute($sql, $data);
     }
+
+    static public function getCourseName($id){
+        $sql = "SELECT * FROM course_table WHERE course_id = ?";
+        $data = array($id);
+        $resData = self::getExecute($sql, $data);
+        if(count($resData) > 0) return $resData[0]['course_name'];
+        return null;
+    }    
 }

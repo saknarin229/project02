@@ -82,6 +82,19 @@ class optionclass extends db_connect{
         } else {
             echo "<span style='color:#E5E5E5'>ว่าง</span>";
         }
-    }    
+    }   
+    
+    static public function getMyclassID2($time, $year, $day, $Y){
+
+        $sql = "SELECT * FROM addclass_data WHERE class_time = ? AND class_year = ? AND class_day = ? AND class_status = ? AND yearclassID = ?";
+        $data = array($time, $year, $day, 0, $Y);
+        $resData = self::getExecute($sql, $data);
+        if (count($resData) > 0) {
+            $resDataCourse = courseActionClass::getCourseID($resData[0]['course_id']);
+            echo "{$resData[0]['course_id']} <br> <small style='font-size:12px'> {$resDataCourse[0]['course_name']}</small>";
+        } else {
+            echo "<span style='color:#E5E5E5'>ว่าง</span>";
+        }
+    }       
 
 }

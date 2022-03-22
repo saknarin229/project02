@@ -126,7 +126,11 @@ $Teacher = TeacherActionClass::getDataAll();
                             <td><?php echo $item['Tc_sex'] ?></td>
                             <td><?php echo departmentActionClass::getPositionNane($item['Tc_department']) ?></td>
                             <td><?php echo positionActionClass::getPositionNane($item['Tc_position']) ?></td>
-                            <td><a href="?op=admin-showClass-teacher&year=<?php echo (intval(date('Y')) + 543) ?>&TcId=<?php echo $item['Tc_user'] ?>&Y=1">ตารางสอน</a></td>
+                            <td>
+                                <a href="?op=admin-showClass-teacher&year=<?php echo (intval(date('Y')) + 543) ?>&TcId=<?php echo $item['Tc_user'] ?>&Y=1">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </a>
+                            </td>
                             <td>
                                 <a href="?op=admin-add-teacher&id=<?php echo $item['Tc_user'] ?>&status=edit" class="btn btn-sm btn-success">แก้ไข</a>
                             </td>

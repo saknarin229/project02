@@ -46,7 +46,7 @@ class loginActionClass extends db_connect {
         if(count($resData) > 0){
             foreach($resData as $item){
                 $_SESSION['status'] = 'teacher';
-                $_SESSION['uid'] = $item['id'];
+                $_SESSION['uid'] = $item['Tc_user'];
                 return true;
             }
         }
@@ -60,7 +60,7 @@ class loginActionClass extends db_connect {
         if(count($resData) > 0){
             foreach($resData as $item){
                 $_SESSION['status'] = 'student';
-                $_SESSION['uid'] = $item['Tc_id'];
+                $_SESSION['uid'] = $item['Std_ID'];
                 return true;
             }
         }

@@ -9,6 +9,7 @@ $Std_user = null;
 $Std_sex = null;
 $Std_yearOfStudent = null;
 $Std_image = null;
+$yearClass = null;
 
 if (isset($_GET['id'])) {
     $resData = studentActionClass::getStudentID($_GET['id']);
@@ -20,6 +21,7 @@ if (isset($_GET['id'])) {
             $Std_sex = $item['Std_sex'];
             $Std_yearOfStudent = $item['Std_yearOfStudent'];
             $Std_image = $item['Std_image'];
+            $yearClass = $item['yearClass'];
         }
     }
 }
@@ -72,6 +74,18 @@ $resDataYearClass = adminAddYearclassClass::getDataAll();
                     <input type="text" required name="Std_user" class="form-control form-control-sm" value="<?php echo $Std_user ?>">
                 </div>
                 <div class="mb-3">
+                    <label class="form-label">ชั้นเรียน</label>
+                    <?php 
+                        $yearclass = adminAddYearclassClass::getDataAll();
+                    ?>
+                    <select class="form-select form-select-sm" name="yearClass">
+                        <option selected disabled value="">---เลือกชั้นเรียน---</option>
+                        <?php foreach($yearclass as $item):?>
+                        <option <?php if($yearClass === $item['id']) echo 'selected' ?> value="<?php echo $item['id']?>"><?php echo $item['yearClassName'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>                
+                <div class="mb-3">
                     <label class="form-label">เพศ</label>
                     <select required name="Std_sex" class="form-select form-select-sm">
                         <option <?php if ($Std_sex === 'ชาย') echo 'selected' ?> value="ชาย">ชาย</option>
@@ -108,6 +122,7 @@ $resDataYearClass = adminAddYearclassClass::getDataAll();
                     <th>รหัสนักเรียน</th>
                     <th>เพศ</th>
                     <th>วันเข้าปีการศึกษา</th>
+                    <th>ตารางเรียน</th>
                     <th>แก้ไข</th>
                     <th>ลบ</th>
                 </tr>
@@ -120,6 +135,11 @@ $resDataYearClass = adminAddYearclassClass::getDataAll();
                         <td><?php echo $item['Std_user'] ?></td>
                         <td><?php echo $item['Std_sex'] ?></td>
                         <td><?php echo optionclass::DateThai($item['Std_yearOfStudent']);?></td>
+                        <td>
+                            <a href="?op=admin-showClass-student&year=<?php echo (intval(date('Y')) + 543)?>&StdID=<?php echo $item['Std_ID']?>&Y=<?php echo $item['yearClass'];?>">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </a>
+                        </td>
                         <td>
                             <a href="?op=admin-add-student&id=<?php echo $item['Std_user'] ?>&status=edit" class="btn btn-sm btn-success">แก้ไข</a>
                         </td>

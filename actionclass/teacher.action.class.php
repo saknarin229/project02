@@ -31,6 +31,7 @@ class TeacherActionClass extends db_connect {
         $data = array($id);
         return self::getExecute($sql, $data);
     }
+  
 
     static public function getDataAll(){
         $sql = "SELECT * FROM teacher_table WHERE Tc_status = ?";
