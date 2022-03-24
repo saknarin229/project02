@@ -63,13 +63,14 @@ class optionclass extends db_connect{
         $resData = self::getDataClass($time, $year, $day, $Y);
         if (count($resData) > 0) {
             $resDataCourse = courseActionClass::getCourseID($resData[0]['course_id']);
-            echo "{$resData[0]['course_id']} <br> <small style='font-size:12px'> {$resDataCourse[0]['course_name']}</small>";
+            $resDataTeacher = TeacherActionClass::getDataID2($resData[0]['teacherID']);
+            echo "{$resData[0]['course_id']} <br> <small style='font-size:12px'> {$resDataCourse[0]['course_name']}</small> <br> <small style='font-size:12px'>{$resDataTeacher[0]['Tc_firstname']} {$resDataTeacher[0]['Tc_lastname']}</small>";
         } else {
             echo "<span style='color:#E5E5E5'>ว่าง</span>";
         }
     }    
 
-    static public function getMyclassID($time, $year, $day, $Y, $TcId){
+    static public function getMyclassID($time, $year, $day, $Y, $TcId){ // ครู
 
         $resTeacher = TeacherActionClass::getDataID($TcId);
 
@@ -78,13 +79,30 @@ class optionclass extends db_connect{
         $resData = self::getExecute($sql, $data);
         if (count($resData) > 0) {
             $resDataCourse = courseActionClass::getCourseID($resData[0]['course_id']);
-            echo "{$resData[0]['course_id']} <br> <small style='font-size:12px'> {$resDataCourse[0]['course_name']}</small>";
+            $resDataYearClass = adminAddYearclassClass::getDataID($resData[0]['yearclassID']);
+            echo "{$resData[0]['course_id']} <br> <small style='font-size:12px'> {$resDataCourse[0]['course_name']}</small> <br> <small style='font-size:12px'>{$resDataYearClass[0]['yearClassName']}</small>";
         } else {
             echo "<span style='color:#E5E5E5'>ว่าง</span>";
         }
-    }   
+    }
+
+    static public function getMyclassID3($time, $year, $day, $TcId){ // ครู 2
+
+        $resTeacher = TeacherActionClass::getDataID($TcId);
+
+        $sql = "SELECT * FROM addclass_data WHERE class_time = ? AND class_year = ? AND class_day = ? AND class_status = ? AND teacherID = ?";
+        $data = array($time, $year, $day, 0, $resTeacher[0]['Tc_id']);
+        $resData = self::getExecute($sql, $data);
+        if (count($resData) > 0) {
+            $resDataCourse = courseActionClass::getCourseID($resData[0]['course_id']);
+            $resDataYearClass = adminAddYearclassClass::getDataID($resData[0]['yearclassID']);
+            echo "{$resData[0]['course_id']} <br> <small style='font-size:12px'> {$resDataCourse[0]['course_name']}</small> <br> <small style='font-size:12px'>{$resDataYearClass[0]['yearClassName']}</small>";
+        } else {
+            echo "<span style='color:#E5E5E5'>ว่าง</span>";
+        }
+    }    
     
-    static public function getMyclassID2($time, $year, $day, $Y){
+    static public function getMyclassID2($time, $year, $day, $Y){ //นักเรียน
 
         $sql = "SELECT * FROM addclass_data WHERE class_time = ? AND class_year = ? AND class_day = ? AND class_status = ? AND yearclassID = ?";
         $data = array($time, $year, $day, 0, $Y);

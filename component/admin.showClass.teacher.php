@@ -124,6 +124,7 @@
             <?php endforeach; ?>
         </table>
     </div>
+    
 </section>
 
 
