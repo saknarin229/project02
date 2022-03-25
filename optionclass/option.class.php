@@ -86,12 +86,12 @@ class optionclass extends db_connect{
         }
     }
 
-    static public function getMyclassID3($time, $year, $day, $TcId){ // ครู 2
+    static public function getMyclassID3($time, $year, $day, $TcId, $term){ // ครู 2
 
         $resTeacher = TeacherActionClass::getDataID($TcId);
 
-        $sql = "SELECT * FROM addclass_data WHERE class_time = ? AND class_year = ? AND class_day = ? AND class_status = ? AND teacherID = ?";
-        $data = array($time, $year, $day, 0, $resTeacher[0]['Tc_id']);
+        $sql = "SELECT * FROM addclass_data WHERE class_time = ? AND class_year = ? AND class_day = ? AND class_status = ? AND teacherID = ? AND class_term = ?";
+        $data = array($time, $year, $day, 0, $resTeacher[0]['Tc_id'], $term);
         $resData = self::getExecute($sql, $data);
         if (count($resData) > 0) {
             $resDataCourse = courseActionClass::getCourseID($resData[0]['course_id']);

@@ -61,34 +61,34 @@
                     <td><?php echo $item ?></td>
 
                     <td class="td-h">
-                        <?php optionclass::getMyclassID3(1, $_GET['Y'], $item, $_SESSION['uid']); ?>
+                        <?php optionclass::getMyclassID3(1, $_GET['Y'], $item, $_SESSION['uid'], $_GET['t']); ?>
                     </td>
                     <td class="td-h">
-                        <?php optionclass::getMyclassID3(2, $_GET['Y'], $item, $_SESSION['uid']); ?>
+                        <?php optionclass::getMyclassID3(2, $_GET['Y'], $item, $_SESSION['uid'], $_GET['t']); ?>
                     </td>
                     <td class="td-h">
-                        <?php optionclass::getMyclassID3(3, $_GET['Y'], $item, $_SESSION['uid']); ?>
+                        <?php optionclass::getMyclassID3(3, $_GET['Y'], $item, $_SESSION['uid'], $_GET['t']); ?>
                     </td>
 
                     <td class="text-center"><strong style="font-size: 12px;">พักเที่ยง</strong></td>
 
                     <td class="td-h">
-                        <?php optionclass::getMyclassID3(5, $_GET['Y'], $item, $_SESSION['uid']); ?>
+                        <?php optionclass::getMyclassID3(5, $_GET['Y'], $item, $_SESSION['uid'], $_GET['t']); ?>
                     </td>
                     <td class="td-h">
-                        <?php optionclass::getMyclassID3(6, $_GET['Y'], $item, $_SESSION['uid']); ?>
+                        <?php optionclass::getMyclassID3(6, $_GET['Y'], $item, $_SESSION['uid'], $_GET['t']); ?>
                     </td>
                     <td class="td-h">
-                        <?php optionclass::getMyclassID3(7, $_GET['Y'], $item, $_SESSION['uid']); ?>
+                        <?php optionclass::getMyclassID3(7, $_GET['Y'], $item, $_SESSION['uid'], $_GET['t']); ?>
                     </td>
                     <td class="td-h">
-                        <?php optionclass::getMyclassID3(8, $_GET['Y'], $item, $_SESSION['uid']); ?>
+                        <?php optionclass::getMyclassID3(8, $_GET['Y'], $item, $_SESSION['uid'], $_GET['t']); ?>
                     </td>
                     <td class="td-h">
-                        <?php optionclass::getMyclassID3(9, $_GET['Y'], $item, $_SESSION['uid']); ?>
+                        <?php optionclass::getMyclassID3(9, $_GET['Y'], $item, $_SESSION['uid'], $_GET['t']); ?>
                     </td>
                     <td class="td-h">
-                        <?php optionclass::getMyclassID3(10, $_GET['Y'], $item, $_SESSION['uid']); ?>
+                        <?php optionclass::getMyclassID3(10, $_GET['Y'], $item, $_SESSION['uid'], $_GET['t']); ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
