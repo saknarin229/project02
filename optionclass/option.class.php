@@ -131,31 +131,31 @@ class optionclass extends db_connect{
 
     static public function calculateGPA($number){
         if(intval($number) < 50 ){
-            echo 'F';
+            return 'F';
 
         }else if(intval($number) >= 50 && intval($number) <= 54){
-            echo 1;
+            return 1.0;
 
         }else if(intval($number) >= 55 && intval($number) <= 59){
-            echo 1.5;
+            return 1.5;
 
         }else if(intval($number) >= 60 && intval($number) <= 64){
-            echo 2;
+            return 2.0;
 
         }else if(intval($number) >= 65 && intval($number) <= 69){
-            echo 2.5;
+            return 2.5;
 
         }else if(intval($number) >= 70 && intval($number) <= 74){
-            echo 3;
+            return 3.0;
 
         }else if(intval($number) >= 75 && intval($number) <= 79){
-            echo 3.5;
+            return 3.5;
 
         }else if(intval($number) >= 80){
-            echo 4;
+            return 4.0;
 
         }else {
-            echo $number;
+            return $number;
         }
     }
 
