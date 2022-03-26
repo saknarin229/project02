@@ -1,9 +1,8 @@
-<?php include_once('layout/teacher.nav.php'); ?>
+
 <?php $Teacher = TeacherActionClass::getDataID($_SESSION['uid']); ?>
 
 <?php if(isset($_POST['btnSavePassword'])) TeacherActionClass::updatePassword($_SESSION['uid'], $_POST['password']);?>
 
-<hr>
 <div class="container">
     <div class="row">
         <div class="col-4 border shadow-sm p-3 m-1">
@@ -24,7 +23,7 @@
         </div>
 
         <div class="col border shadow-sm p-3 m-1 text-center">
-            <?php if ($Teacher[0]['Tc_picture'] !== "" || $Teacher[0]['Tc_picture'] !== null) : ?>
+            <?php if ($Teacher[0]['Tc_picture'] === "" || $Teacher[0]['Tc_picture'] === null) : ?>
                 <img src="https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_1280.png" style="max-width: 10rem;" alt="">
             <?php else : ?>
                 <img src="<?php echo $Teacher[0]['Tc_picture'] ?>" style="max-width: 10rem;" alt="">

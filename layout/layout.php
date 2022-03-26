@@ -51,6 +51,19 @@
             <div class="col-9">
                 
                 <?php
+                    if(isset($_SESSION['status'])){
+                        if($_SESSION['status'] === "admin"){
+                            include_once('layout/admin.nav.php');
+                        }else if($_SESSION['status'] === "teacher"){
+                            include_once('layout/teacher.nav.php');
+                        }else if($_SESSION['status'] === "student"){
+                            include_once('layout/student.nav.php');
+                        }
+
+                        echo "<hr>";
+                    }
+
+
                     if(isset($_GET['op'])){
                         $file = str_replace('-','.',$_GET['op']);
                         if(file_exists("component/$file.php")){

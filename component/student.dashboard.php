@@ -1,2 +1,2 @@
-student.dashboard
-<?php optionclass::checkStudantStatus()?>
+
+<?php include_once('component/student.profile.php')?>

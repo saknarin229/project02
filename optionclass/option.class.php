@@ -70,7 +70,7 @@ class optionclass extends db_connect{
         }
     }    
 
-    static public function getMyclassID($time, $year, $day, $Y, $TcId){ // ครู
+    static public function getMyclassID($time, $year, $day, $Y, $TcId){ //admin  ครู
 
         $resTeacher = TeacherActionClass::getDataID($TcId);
 
@@ -102,10 +102,11 @@ class optionclass extends db_connect{
         }
     }    
     
-    static public function getMyclassID2($time, $year, $day, $Y){ //นักเรียน
+    static public function getMyclassID2($time, $year, $day, $Y){ //admin นักเรียน
 
         $sql = "SELECT * FROM addclass_data WHERE class_time = ? AND class_year = ? AND class_day = ? AND class_status = ? AND yearclassID = ?";
         $data = array($time, $year, $day, 0, $Y);
+        print_r("SELECT * FROM addclass_data WHERE class_time = $time AND class_year = $year AND class_day = $day AND class_status = 0 AND yearclassID = $Y");
         $resData = self::getExecute($sql, $data);
         if (count($resData) > 0) {
             $resDataCourse = courseActionClass::getCourseID($resData[0]['course_id']);
@@ -113,6 +114,49 @@ class optionclass extends db_connect{
         } else {
             echo "<span style='color:#E5E5E5'>ว่าง</span>";
         }
-    }       
+    }
+    
+    static public function getMyclassID4($time, $year, $day, $Y, $term){ //นักเรียน
+
+        $sql = "SELECT * FROM addclass_data WHERE class_time = ? AND class_year = ? AND class_day = ? AND class_status = ? AND yearclassID = ? AND class_term = ?";
+        $data = array($time, $year, $day, 0, $Y, $term);
+        $resData = self::getExecute($sql, $data);
+        if (count($resData) > 0) {
+            $resDataCourse = courseActionClass::getCourseID($resData[0]['course_id']);
+            echo "{$resData[0]['course_id']} <br> <small style='font-size:12px'> {$resDataCourse[0]['course_name']}</small>";
+        } else {
+            echo "<span style='color:#E5E5E5'>ว่าง</span>";
+        }
+    }    
+
+    static public function calculateGPA($number){
+        if(intval($number) < 50 ){
+            echo 'F';
+
+        }else if(intval($number) >= 50 && intval($number) <= 54){
+            echo 1;
+
+        }else if(intval($number) >= 55 && intval($number) <= 59){
+            echo 1.5;
+
+        }else if(intval($number) >= 60 && intval($number) <= 64){
+            echo 2;
+
+        }else if(intval($number) >= 65 && intval($number) <= 69){
+            echo 2.5;
+
+        }else if(intval($number) >= 70 && intval($number) <= 74){
+            echo 3;
+
+        }else if(intval($number) >= 75 && intval($number) <= 79){
+            echo 3.5;
+
+        }else if(intval($number) >= 80){
+            echo 4;
+
+        }else {
+            echo $number;
+        }
+    }
 
 }

@@ -7,5 +7,6 @@
         <a href="?op=admin-add-course" class="btn btn-outline-secondary">วิชา</a>        
         <a href="?op=admin-add-yearclass" class="btn btn-outline-secondary">ปีการศึกษา</a>
         <a href="?op=admin-add-class" class="btn btn-outline-secondary">จัดการตารางเรียน</a>
+        <?php include_once('btn.logout.php')?>
     </div>
 </div>

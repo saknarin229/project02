@@ -1,0 +1,1 @@
+<a href="logout.action.php" onclick="if(!confirm('ฉันต้องการออกจากระบบ!')) return false;" class="btn btn-outline-secondary">ออกจากระบบ</a>

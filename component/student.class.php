@@ -1,12 +1,3 @@
-<?php
-
-$yearclass = adminAddYearclassClass::getDataAll();
-$getStudentData = studentActionClass::getStudentID($_GET['StdID']);
-
-$Y = null;
-if (isset($_GET['Y'])) $Y = $_GET['Y'];
-?>
-
 
 
 <section class="container">
@@ -17,18 +8,14 @@ if (isset($_GET['Y'])) $Y = $_GET['Y'];
                 <div class="col-12 col-sm-6">
                     <div class="mb-3">
                         <label class="form-label">ปีการศึกษา</label>
-                        <input type="text" class="form-control form-control-sm" id="myYear" value="<?php echo $_GET['year'] ?>">
+                        <input type="text" class="form-control form-control-sm" id="myYear" value="<?php echo $_GET['year']?>">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">ชั้นปี</label>
-                        <select name="yearclassID" class="form-select form-select-sm" id="yearclassID">
-                            <option value="" selected disabled>---เลือกชั้นปี---</option>
-                            <?php foreach ($yearclass as $item) : ?>
-                                <option <?php if ($Y === $item['id']) echo 'selected' ?> value="<?php echo $item['id'] ?>"><?php echo $item['yearClassName'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <input type="radio" name="mtT" id="myT1" <?php if(intval($_GET['t']) === 1) echo 'checked'?> value="1">
+                        <label for="myT1">เทรม 1</label>
+                        <input type="radio" name="mtT" id="myT2" <?php if(intval($_GET['t']) === 2) echo 'checked'?> value="2">
+                        <label for="myT2">เทรม 2</label>
                     </div>
-
                     <div class="mb-3">
                         <button type="button" class="w-100 btn btn-sm btn-primary" onclick="getYear()">ค้นหา</button>
                     </div>
@@ -36,26 +23,7 @@ if (isset($_GET['Y'])) $Y = $_GET['Y'];
             </div>
         </form>
     </div>
-
-    <div class="col-12 mt-3">
-        <?php if ($getStudentData[0]['Std_image'] === "" || $getStudentData[0]['Std_image'] === null) : ?>
-            <img src="https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_1280.png" style="max-width: 10rem;" alt="">
-        <?php else : ?>
-            <img src="<?php echo $getStudentData[0]['Std_image'] ?>" style="max-width: 10rem;" alt="">
-        <?php endif; ?>
-
-        <h3 class="mt-3">เกี่ยวกับนักเรียน</h3>
-
-        <span>รหัสประจำตัว : <?php echo $getStudentData[0]['Std_user'] ?></span> <br>
-        <span>ชื่อ : <?php echo "{$getStudentData[0]['Std_firstname']} {$getStudentData[0]['Std_lastname']}" ?></span> <br>
-        <span>เพศ : <?php echo $getStudentData[0]['Std_sex'] ?></span> <br>
-        <span>ชั้น : <?php $YearClass = adminAddYearclassClass::getDataID($getStudentData[0]['yearClass']);
-                        echo $YearClass[0]['yearClassName'] ?></span> <br>
-
-
-
-    </div>
-
+    <br><br>
     <div class="col-12 mt-3">
         <table class="table table-bordered">
             <tr style="background-color: #CCCCCC;">
@@ -90,49 +58,49 @@ if (isset($_GET['Y'])) $Y = $_GET['Y'];
                     <td><?php echo $item ?></td>
 
                     <td class="td-h">
-                        <?php optionclass::getMyclassID2(1, $_GET['year'], $item, $_GET['Y']); ?>
+                        <?php optionclass::getMyclassID4(1, $_GET['year'], $item, $_GET['Y'], $_GET['t']); ?>
                     </td>
                     <td class="td-h">
-                        <?php optionclass::getMyclassID2(2, $_GET['year'], $item, $_GET['Y']); ?>
+                        <?php optionclass::getMyclassID4(2, $_GET['year'], $item, $_GET['Y'], $_GET['t']); ?>
                     </td>
                     <td class="td-h">
-                        <?php optionclass::getMyclassID2(3, $_GET['year'], $item, $_GET['Y']); ?>
+                        <?php optionclass::getMyclassID4(3, $_GET['year'], $item, $_GET['Y'], $_GET['t']); ?>
                     </td>
 
                     <td class="text-center"><strong style="font-size: 12px;">พักเที่ยง</strong></td>
 
                     <td class="td-h">
-                        <?php optionclass::getMyclassID2(5, $_GET['year'], $item, $_GET['Y']); ?>
+                        <?php optionclass::getMyclassID4(5, $_GET['year'], $item, $_GET['Y'], $_GET['t']); ?>
                     </td>
                     <td class="td-h">
-                        <?php optionclass::getMyclassID2(6, $_GET['year'], $item, $_GET['Y']); ?>
+                        <?php optionclass::getMyclassID4(6, $_GET['year'], $item, $_GET['Y'], $_GET['t']); ?>
                     </td>
                     <td class="td-h">
-                        <?php optionclass::getMyclassID2(7, $_GET['year'], $item, $_GET['Y']); ?>
+                        <?php optionclass::getMyclassID4(7, $_GET['year'], $item, $_GET['Y'], $_GET['t']); ?>
                     </td>
                     <td class="td-h">
-                        <?php optionclass::getMyclassID2(8, $_GET['year'], $item, $_GET['Y']); ?>
+                        <?php optionclass::getMyclassID4(8, $_GET['year'], $item, $_GET['Y'], $_GET['t']); ?>
                     </td>
                     <td class="td-h">
-                        <?php optionclass::getMyclassID2(9, $_GET['year'], $item, $_GET['Y']); ?>
+                        <?php optionclass::getMyclassID4(9, $_GET['year'], $item, $_GET['Y'], $_GET['t']); ?>
                     </td>
                     <td class="td-h">
-                        <?php optionclass::getMyclassID2(10, $_GET['year'], $item, $_GET['Y']); ?>
+                        <?php optionclass::getMyclassID4(10, $_GET['year'], $item, $_GET['Y'], $_GET['t']); ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </table>
     </div>
+    
 </section>
 
-
-
 <script>
-    function getYear() {
-
+    function getYear(){
         const url = new URL(window.location.href);
         const myYear = document.getElementById('myYear').value;
-        const yearclassID = document.getElementById('yearclassID').value;
-        window.location.href = `?op=${url.searchParams.get('op')}&StdID=${url.searchParams.get('StdID')}&Y=${yearclassID}&year=${myYear}`;
+        const mtT =  document.querySelector('input[name="mtT"]:checked').value;
+
+        "student-class&&year=2565&StdID=2625&Y=2&t=1"
+        window.location.href = `?op=${url.searchParams.get('op')}&year=${myYear}&StdID=${url.searchParams.get('StdID')}&Y=${url.searchParams.get('Y')}&t=${mtT}`;
     }
 </script>

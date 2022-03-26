@@ -1,5 +1,5 @@
 <?php
-include_once('layout/admin.nav.php');
+
 if (isset($_POST['btnSave'])) adminAddclassActionClass::actionData();
 
 
@@ -36,7 +36,6 @@ $course = courseActionClass::getCourseAll();
 
 ?>
 
-<hr>
 <style>
     .td-h:hover {
         background-color: #CCCCCC;

@@ -77,5 +77,13 @@ class studentActionClass extends db_connect {
         }
     }
 
+    static public function EditPassword($pass, $user){
+        $sql = "UPDATE student_table SET Std_password=? WHERE Std_user=?";
+        $data = array($pass, $user);
+        self::ExecuteData($sql, $data);
+        echo "<script>alert('แก้ไขรหัสผ่านเรียบร้อย');</script>";
+
+    }
+
 
 }

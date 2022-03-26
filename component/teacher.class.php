@@ -1,7 +1,4 @@
 
-<?php include_once('layout/teacher.nav.php');?>
-
-<hr>
 
 <section class="container">
 
@@ -24,7 +21,7 @@
                     </div>
                 </div>
             </div>
-        </form>        
+        </form>
     </div>
     <br><br>
     <div class="col-12 mt-3">

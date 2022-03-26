@@ -1,5 +1,5 @@
 <?php
-include_once('layout/admin.nav.php');
+
 if (isset($_POST['btnSave'])) TeacherActionClass::actionData();
 
 
@@ -28,7 +28,7 @@ $Teacher = TeacherActionClass::getDataAll();
 
 ?>
 
-<hr>
+
 <div class="text-end">
     <a href="?op=admin-add-teacher&status=add" class="btn btn-sm btn-outline-success">+เพิ่มรายชื่อครู</a>
 </div>

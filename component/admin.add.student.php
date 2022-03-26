@@ -1,5 +1,5 @@
 <?php
-include_once('layout/admin.nav.php');
+
 if (isset($_POST['btnSave'])) studentActionClass::actionData();
 if (isset($_GET['did'])) studentActionClass::updateStatus($_GET['did']);
 
@@ -39,7 +39,7 @@ $resDataYearClass = adminAddYearclassClass::getDataAll();
 
 ?>
 
-<hr>
+
 <div class="text-end">
     <a href="?op=admin-add-student&status=add" class="btn btn-sm btn-outline-success">+เพิ่มรายชื่อนักเรียน</a>
 </div>

@@ -1,5 +1,5 @@
 <?php
-include_once('layout/admin.nav.php');
+
 
 if (isset($_POST['btnSave'])) $resData = adminAddYearclassClass::action();
 if (isset($_GET['did'])) $resData = adminAddYearclassClass::updateStatus($_GET['did']);
@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
 $resData = adminAddYearclassClass::getDataAll();
 ?>
 
-<hr>
+
 <div class="text-end">
     <a href="?op=admin-add-yearclass" class="btn btn-sm btn-outline-success">+เพิ่มใหม่</a>
 </div>

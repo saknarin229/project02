@@ -1,6 +1,6 @@
 
 <?php 
-    include_once('layout/admin.nav.php');
+
     $yearclass = adminAddYearclassClass::getDataAll();
     $getTeacherData = TeacherActionClass::getDataID($_GET['TcId']);
 
@@ -8,7 +8,6 @@
     if (isset($_GET['Y'])) $Y = $_GET['Y'];    
 ?>
 
-<hr>
 
 <section class="container">
 

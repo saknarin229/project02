@@ -1,5 +1,5 @@
 <?php
-include_once('layout/admin.nav.php');
+
 if (isset($_POST['btnSave'])) adminCourseActionClass::actionData();
 
 
@@ -23,7 +23,7 @@ $resData = adminCourseActionClass::getDataAll();
 
 ?>
 
-<hr>
+
 <div class="text-end">
     <a href="?op=admin-add-student" class="btn btn-sm btn-outline-success">+เพิ่มใหม่</a>
 </div>

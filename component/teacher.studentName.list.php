@@ -1,18 +1,18 @@
-<?php include_once('layout/teacher.nav.php'); ?>
+
 <?php $yearClass = adminAddYearclassClass::getDataAll() ?>
 <?php $Course = adminCourseActionClass::getDataAll() ?>
 <?php
 
-if (isset($_POST['btnSave'])) {
-    studiedResultClass::addResult();
-}
+if (isset($_POST['btnSave'])) studiedResultClass::addResult();
 
 $Y = null;
 $course = null;
+$myT = null;
 $getyearClass = (intval(date('Y')) + 543);
 if (isset($_POST['Y'])) $Y  = $_POST['Y'];
 if (isset($_POST['course'])) $course = $_POST['course'];
 if (isset($_POST['yearClass'])) $getyearClass = $_POST['yearClass'];
+if (isset($_POST['myT'])) $myT = $_POST['myT'];
 
 ?>
 <hr>
@@ -24,6 +24,12 @@ if (isset($_POST['yearClass'])) $getyearClass = $_POST['yearClass'];
                 <strong><small>เลือกชั้นปีเพื่อค้นหานักเรียนและลงคะแนน</small></strong>
 
                 <input type="text" name="yearClass" class="form-control form-control-sm" id="" value="<?php echo $getyearClass ?>">
+
+                <br>
+                <input type="radio" <?php if( intval($myT) === 1) echo 'checked'?> name="myT" id="myT1" checked value="1">
+                <label for="myT1">เทรม 1</label>
+                <input type="radio" <?php if( intval($myT) === 2) echo 'checked'?> name="myT" id="myT2" value="2">
+                <label for="myT2">เทรม 2</label>
 
                 <select name="Y" class="form-select form-select-sm mt-3" id="">
                     <option selected disabled value="">---เลือกชั้นปีนักเรียน---</option>
@@ -80,7 +86,7 @@ if (isset($_POST['yearClass'])) $getyearClass = $_POST['yearClass'];
                                     <td><?php $resVearClass = adminAddYearclassClass::getDataID($item['yearClass']);
                                         echo $resVearClass[0]['yearClassName']; ?></td>
                                     <td class="text-center">
-                                        <input type="text" name="score[]" placeholder="0" class="w-25">
+                                        <input type="text" name="score[]" placeholder="0" class="w-25" value="<?php echo gpaGetClass::getData($item['Std_user'], $_POST['course'], $_POST['myT'], $_POST['Y'], $_POST['yearClass'])?>">
                                         <input type="hidden" name="studentID[]" value="<?php echo $item['Std_ID'] ?>">
 
                                     </td>
@@ -91,16 +97,16 @@ if (isset($_POST['yearClass'])) $getyearClass = $_POST['yearClass'];
                     <hr>
 
                     <div class="col text-center">
-                        <input type="radio" name="myT" id="myT1" checked value="1">
-                        <label for="myT1">เทรม 1</label>
-                        <input type="radio" name="myT" id="myT2" value="2">
-                        <label for="myT2">เทรม 2</label>
+
                         <br>
                         <br>
 
                         <input type="hidden" name="Y" value="<?php echo $_POST['Y'] ?>">
                         <input type="hidden" name="course" value="<?php echo $_POST['course'] ?>">
                         <input type="hidden" name="year" value="<?php echo $_POST['yearClass'] ?>">
+                        <input type="hidden" name="yearClass" value="<?php echo $_POST['yearClass'] ?>">
+                        <input type="hidden" name="myT" value="<?php echo $_POST['myT'] ?>">
+                        
 
                         <button name="btnSave" class="btn btn-primary btn-sm w-50">บันทึกคะแนน</button>
                     </div>
