@@ -1,4 +1,4 @@
-
+<?php optionclass::checkTeacherStatus() ?>
 <?php $yearClass = adminAddYearclassClass::getDataAll() ?>
 <?php $Course = adminCourseActionClass::getDataAll() ?>
 <?php
@@ -27,9 +27,9 @@ if (isset($_POST['myT'])) $myT = $_POST['myT'];
 
                 <br>
                 <input type="radio" <?php if( intval($myT) === 1) echo 'checked'?> name="myT" id="myT1" checked value="1">
-                <label for="myT1">เทรม 1</label>
+                <label for="myT1">เทอม 1</label>
                 <input type="radio" <?php if( intval($myT) === 2) echo 'checked'?> name="myT" id="myT2" value="2">
-                <label for="myT2">เทรม 2</label>
+                <label for="myT2">เทอม 2</label>
 
                 <select name="Y" class="form-select form-select-sm mt-3" id="">
                     <option selected disabled value="">---เลือกชั้นปีนักเรียน---</option>

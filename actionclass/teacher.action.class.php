@@ -52,6 +52,13 @@ class TeacherActionClass extends db_connect {
         echo "<script>window.location.href='?op=admin-add-teacher'</script>";
     }
 
+    static public function DeleteSetUpdateStatus($id){
+        $sql = "UPDATE teacher_table SET Tc_status=? WHERE Tc_user=?";
+        $data = array(1, $id);
+        self::ExecuteData($sql, $data);
+        echo "<script>window.location.href='?op=admin-add-teacher'</script>";
+    }    
+
     static public function uploadImage($file, $code){
         if($file['name'] !== ""){
             

@@ -24,7 +24,7 @@ body {
   <tr bgcolor="#000000">
     <td height="177" colspan="2"><table width="1365" border="0">
         <tr>
-          <td width="1208"><img src="Photo/หน้าปก.png" width="1205" height="236" longdesc="Photo/หน้าปก.png" /></td>
+          <td width="1208"><img src="Photo/ปกบน.jpg" width="1205" height="236" longdesc="Photo/ปกบน.jpg" /></td>
           <td width="141" valign="top">&nbsp;</td>
         </tr>
     </table></td>
@@ -58,7 +58,7 @@ body {
     </table></td>
   </tr>
   <tr>
-    <td colspan="2" align="center"><img src="Photo/ข้างล้าง.png" width="1360" height="150" longdesc="Photo/ข้างล้าง.png" /></td>
+    <td colspan="2" align="center"><img src="Photo/ปกล่าง.jpg" width="1360" height="150" longdesc="Photo/ปกล่าง.jpg" /></td>
   </tr>
 </table>
 <body>

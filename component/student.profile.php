@@ -1,4 +1,4 @@
-
+<?php optionclass::checkStudantStatus()?>
 <?php $student = studentActionClass::getStudentID($_SESSION['uid']); ?>
 <?php if(isset($_POST['btnSavePassword'])) studentActionClass::EditPassword($_POST['password'], $_SESSION['uid']);?>
 

@@ -31,7 +31,7 @@
 <body style="background-image: url(Photo/110930809.jpg);">
 <div class="container">
     <section class="col-12 position-relative">
-        <img src="Photo/หน้าปก.png" class="w-100" alt="">
+        <img src="Photo/ปกบน.jpg" class="w-100" alt="">
         <a href="?op=login" style="z-index: 1;" class="position-absolute top-0 end-0 mt-3 me-3 btn btn-sm btn-info">เข้าสู่ระบบ</a>
     </section>
 
@@ -49,6 +49,8 @@
                 </div>
             </div>
             <div class="col-9">
+
+
                 
                 <?php
                     if(isset($_SESSION['status'])){
@@ -64,9 +66,9 @@
                     }
 
 
-                    if(isset($_GET['op'])){
+                    if(isset($_GET['op'])){ //---> เช็คค่าพารามิเตอร์
                         $file = str_replace('-','.',$_GET['op']);
-                        if(file_exists("component/$file.php")){
+                        if(file_exists("component/$file.php")){ //---> file_exists เช็คว่าไฟล์มีอยู่จริงหรือไม่
                             include_once("component/$file.php");
                         }else{
                             include_once('component/404.php');
@@ -83,7 +85,7 @@
     </section>
 
     <section class="col-12 pt-3 bg-light">
-        <img src="Photo/ข้างล้าง.png" class="w-100" alt="">
+        <img src="Photo/ปกล่าง.jpg" class="w-100" alt="">
     </section>    
 
 </div>

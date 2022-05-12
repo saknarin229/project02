@@ -131,7 +131,7 @@ class optionclass extends db_connect{
 
     static public function calculateGPA($number){
         if(intval($number) < 50 ){
-            return 'F';
+            return '0';
 
         }else if(intval($number) >= 50 && intval($number) <= 54){
             return 1.0;

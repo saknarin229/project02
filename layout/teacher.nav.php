@@ -1,4 +1,4 @@
-<?php optionclass::checkTeacherStatus() ?>
+
 
 <div class="container mt-5">
     <div class="col-12">

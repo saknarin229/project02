@@ -1,3 +1,5 @@
+<?php optionclass::checkAdminStatus()?>
+
 <?php
 
 if (isset($_POST['btnSave'])) adminAddclassActionClass::actionData();

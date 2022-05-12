@@ -1,3 +1,4 @@
+<?php optionclass::checkAdminStatus()?>
 <?php
 
 $yearclass = adminAddYearclassClass::getDataAll();

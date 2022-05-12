@@ -1,4 +1,4 @@
-
+<?php optionclass::checkTeacherStatus() ?>
 <?php $Teacher = TeacherActionClass::getDataID($_SESSION['uid']); ?>
 
 <?php if(isset($_POST['btnSavePassword'])) TeacherActionClass::updatePassword($_SESSION['uid'], $_POST['password']);?>

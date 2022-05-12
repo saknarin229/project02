@@ -1,4 +1,4 @@
-<?php optionclass::checkStudantStatus()?>
+
 <?php $studentClass = studentActionClass::getStudentID($_SESSION['uid'])?>
 <div class="container mt-5">
     <div class="col-12">

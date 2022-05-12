@@ -1,3 +1,5 @@
+<?php optionclass::checkAdminStatus()?>
+
 <?php
 
 if (isset($_POST['btnSave'])) adminCourseActionClass::actionData();
@@ -44,7 +46,7 @@ $resData = adminCourseActionClass::getDataAll();
                     <input type="text" required name="course_name" class="form-control form-control-sm" value="<?php echo $course_name ?>">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">หน่อยกิจ</label>
+                    <label class="form-label">หน่วยกิต</label>
                     <input type="text" required name="course_credit" class="form-control form-control-sm" value="<?php echo $course_credit ?>">
                 </div>                
                 <div class="mb-3">

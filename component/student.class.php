@@ -1,5 +1,5 @@
 
-
+<?php optionclass::checkStudantStatus()?>
 <section class="container">
 
     <div class="col-12 mt-3">
@@ -12,9 +12,9 @@
                     </div>
                     <div class="mb-3">
                         <input type="radio" name="mtT" id="myT1" <?php if(intval($_GET['t']) === 1) echo 'checked'?> value="1">
-                        <label for="myT1">เทรม 1</label>
+                        <label for="myT1">เทอม 1</label>
                         <input type="radio" name="mtT" id="myT2" <?php if(intval($_GET['t']) === 2) echo 'checked'?> value="2">
-                        <label for="myT2">เทรม 2</label>
+                        <label for="myT2">เทอม 2</label>
                     </div>
                     <div class="mb-3">
                         <button type="button" class="w-100 btn btn-sm btn-primary" onclick="getYear()">ค้นหา</button>

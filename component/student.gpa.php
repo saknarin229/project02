@@ -1,3 +1,4 @@
+<?php optionclass::checkStudantStatus()?>
 <?php $getYearClass = adminAddYearclassClass::getDataAll() ?>
 
 <?php
@@ -34,9 +35,9 @@ if (isset($_POST['yearClass'])) $getyearClass = $_POST['yearClass'];
                 <div class="mb-3">
                     <input type="radio" <?php if (intval($myT) === 1) echo 'checked' ?> name="myT" id="myT1" checked
                         value="1">
-                    <label for="myT1">เทรม 1</label>
+                    <label for="myT1">เทอม 1</label>
                     <input type="radio" <?php if (intval($myT) === 2) echo 'checked' ?> name="myT" id="myT2" value="2">
-                    <label for="myT2">เทรม 2</label>
+                    <label for="myT2">เทอม 2</label>
                 </div>
 
                 <div class="mb-3">
@@ -58,7 +59,7 @@ if (isset($_POST['yearClass'])) $getyearClass = $_POST['yearClass'];
                     <tr>
                         <th>รหัสวิชา</th>
                         <th>วิชา</th>
-                        <th>หน่วยกิจ</th>
+                        <th>หน่วยกิต</th>
                         <th>คะแนน</th>
                         <th>เกรด</th>
                     </tr>
@@ -68,6 +69,7 @@ if (isset($_POST['yearClass'])) $getyearClass = $_POST['yearClass'];
                         $resData = studiedResultClass::getDataAll($_SESSION['uid'], $_POST['myT'], $_POST['yearclassID'], $_POST['yearClass']);
                         $myGPA = 0;
                         $credit = 0;
+                        
                         foreach ($resData as $item) :
                             $getCourse = courseActionClass::getCourseID($item['course_id']);
                             $credit += floatval($getCourse[0]['course_credit']);
@@ -78,11 +80,12 @@ if (isset($_POST['yearClass'])) $getyearClass = $_POST['yearClass'];
                         <td><?php echo $getCourse[0]['course_credit'] ?></td>
                         <td><?php echo $item['gpa'] ?></td>
                         <?php
-                                $GPA = optionclass::calculateGPA($item['gpa']);
-                                $myGPA += floatval($GPA);
-                                ?>
-                        <td>
+                            $GPA = optionclass::calculateGPA($item['gpa']);
 
+                            $myGPA += (floatval($GPA) * floatval($getCourse[0]['course_credit']));
+                            
+                        ?>
+                        <td>
                             <?php echo $GPA ?>
                         </td>
                     </tr>
@@ -96,7 +99,7 @@ if (isset($_POST['yearClass'])) $getyearClass = $_POST['yearClass'];
                     <h3>
                         เกรดเฉลี่ย GPA ที่ได้ 
                         <?php if(count($resData) > 0){
-                            echo number_format(floatval($myGPA) / floatval($credit), 1);
+                            echo number_format(floatval($myGPA) / floatval($credit), 2);
                         } else{
                             echo 0;
                         }

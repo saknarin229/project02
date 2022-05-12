@@ -1,3 +1,5 @@
+<?php optionclass::checkAdminStatus()?>
+
 <?php
 
 if (isset($_POST['btnSave'])) TeacherActionClass::actionData();
@@ -24,6 +26,8 @@ if (isset($_GET['id'])) {
         }
     }
 }
+
+if(isset($_GET['did'])) TeacherActionClass::DeleteSetUpdateStatus($_GET['did']);
 $Teacher = TeacherActionClass::getDataAll();
 
 ?>

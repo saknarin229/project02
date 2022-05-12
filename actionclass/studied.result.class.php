@@ -49,6 +49,7 @@ class studiedResultClass extends db_connect {
     static public function getDataAll($StdID, $gpaTerm, $gpaYear, $year){
         $sql = "SELECT * FROM studied_result WHERE sd_id = ? AND gpa_term = ? AND gpa_year = ? AND year = ?";
         $data = array($StdID, $gpaTerm, $gpaYear, $year);
+
         $resData = self::getExecute($sql, $data);
         return $resData;
     }
