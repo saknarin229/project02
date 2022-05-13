@@ -4,7 +4,7 @@ class db_connect {
     static private function conn(){
         $servername = "localhost";
         $username = "root";
-        $password = "ad123456789";
+        $password = "123456789"; //ad123456789
         $db = 'schoolbang';
 
         $conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));

@@ -3,8 +3,6 @@
 <?php $Course = adminCourseActionClass::getDataAll() ?>
 <?php
 
-if (isset($_POST['btnSave'])) studiedResultClass::addResult();
-
 $Y = null;
 $course = null;
 $myT = null;
@@ -26,9 +24,9 @@ if (isset($_POST['myT'])) $myT = $_POST['myT'];
                 <input type="text" name="yearClass" class="form-control form-control-sm" id="" value="<?php echo $getyearClass ?>">
 
                 <br>
-                <input type="radio" <?php if( intval($myT) === 1) echo 'checked'?> name="myT" id="myT1" checked value="1">
+                <input type="radio" <?php if (intval($myT) === 1) echo 'checked' ?> name="myT" id="myT1" checked value="1">
                 <label for="myT1">เทอม 1</label>
-                <input type="radio" <?php if( intval($myT) === 2) echo 'checked'?> name="myT" id="myT2" value="2">
+                <input type="radio" <?php if (intval($myT) === 2) echo 'checked' ?> name="myT" id="myT2" value="2">
                 <label for="myT2">เทอม 2</label>
 
                 <select name="Y" class="form-select form-select-sm mt-3" id="">
@@ -59,10 +57,19 @@ if (isset($_POST['myT'])) $myT = $_POST['myT'];
                     <table id="example" class="table table-striped" style="width:100%">
                         <thead class="bg-secondary">
                             <tr>
-                                <th>รหัสนักเรียน</th>
-                                <th>ชื้อนักเรียน</th>
-                                <th>ชั้น</th>
-                                <th class="text-center">ลงคะแนน</th>
+                                <th><small>ไอดี</small></th>
+                                <th><small>ชื้อ</small></th>
+                                <th><small>ชั้น</small></th>
+                                <td><small style="font-size: 12px;"><strong>ก.กล.ภ</strong></small></td>
+                                <td><small style="font-size: 12px;"><strong>ส.กล.ภ</strong></small></td>
+                                <td><small style="font-size: 12px;"><strong>จ.ส.กล</strong></small></td>
+                                <td><small style="font-size: 12px;"><strong>รวม</strong></small></td>
+                                <td><small style="font-size: 12px;"><strong>ก.ปล.ภ</strong></small></td>
+                                <td><small style="font-size: 12px;"><strong>ส.ปล.ภ</strong></small></td>
+                                <td><small style="font-size: 12px;"><strong>จ.ส.ปล</strong></small></td>
+                                <td><small style="font-size: 12px;"><strong>รวม</strong></small></td>
+                                <td><small style="font-size: 12px;"><strong>คะแนน</strong></small></td>
+                                <th><small>ลงคะแนน</small></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -78,38 +85,69 @@ if (isset($_POST['myT'])) $myT = $_POST['myT'];
                                 $resData = db_connect::getExecute($sql, $data);
                             }
 
+
+                            $groupClass = array(
+                                'Y' => $_POST['Y'],
+                                'course' => $_POST['course'],
+                                'year' => $_POST['yearClass'],
+                                'yearClass' => $_POST['yearClass'],
+                                'myT' => $_POST['myT'],
+                            );
+
+                            $json = bin2hex(json_encode($groupClass));
+
                             foreach ($resData as $item) :
                             ?>
                                 <tr>
-                                    <td><?php echo $item['Std_user'] ?></td>
-                                    <td><?php echo "{$item['Std_firstname']} {$item['Std_lastname']}" ?></td>
-                                    <td><?php $resVearClass = adminAddYearclassClass::getDataID($item['yearClass']);
-                                        echo $resVearClass[0]['yearClassName']; ?></td>
-                                    <td class="text-center">
-                                        <input type="text" name="score[]" placeholder="0" class="w-25" value="<?php echo gpaGetClass::getData($item['Std_user'], $_POST['course'], $_POST['myT'], $_POST['Y'], $_POST['yearClass'])?>">
-                                        <input type="hidden" name="studentID[]" value="<?php echo $item['Std_ID'] ?>">
+                                    <td> <small><?php echo $item['Std_user'] ?></small></td>
+                                    <td> <small><?php echo "{$item['Std_firstname']} {$item['Std_lastname']}" ?></small></td>
+                                    <td>
+                                        <small>
+                                            <?php $resVearClass = adminAddYearclassClass::getDataID($item['yearClass']);
+                                            echo $resVearClass[0]['yearClassName']; ?>
+                                        </small>
+                                    </td>
+                                    <?php
+                                    $sc = gpaGetClass::getDataNew($item['Std_user'], $_POST['course'], $_POST['myT'], $_POST['Y'], $_POST['yearClass']);
 
+                                    $midterm_exam_scores = 0;
+                                    $Final_exam_scores = 0;
+                                    $midterm_score = 0;
+                                    $Final_score = 0;
+                                    $mentality_exam_score = 0;
+                                    $mentality_score = 0;
+                                    $gpa = 0;
+
+                                    if (count($sc) > 0) {
+                                        $midterm_exam_scores = $sc[0]['midterm_exam_scores'];
+                                        $Final_exam_scores = $sc[0]['Final_exam_scores'];
+                                        $midterm_score = $sc[0]['midterm_score'];
+                                        $Final_score = $sc[0]['Final_score'];
+                                        $mentality_exam_score = $sc[0]['mentality_exam_score'];
+                                        $mentality_score = $sc[0]['mentality_score'];
+                                        $gpa = $sc[0]['gpa'];
+                                    }
+
+                                    ?>
+                                    <td><?php echo $midterm_exam_scores ?></td>
+                                    <td><?php echo $Final_exam_scores ?></td>
+                                    <td><?php echo $mentality_exam_score ?></td>
+                                    <td><?php echo number_format(((floatval($midterm_exam_scores) + floatval($Final_exam_scores)) + floatval($mentality_exam_score)) / 2, 1) ?></td>
+                                    <td><?php echo $midterm_score ?></td>
+                                    <td><?php echo $Final_score ?></td>
+                                    <td><?php echo $mentality_score ?></td>
+                                    <td><?php echo number_format(((floatval($midterm_score) + floatval($Final_score)) + floatval($mentality_score)) / 2, 1) ?></td>
+                                    <td><?php echo $gpa ?></td>
+                                    <td>
+                                        <a href="?op=teacher-score-add&stdID=<?php echo $item['Std_ID'] ?>&groupClass=<?php echo $json ?>">
+                                            <i class="fa-solid fa-file-circle-plus"></i><!-- ลงคะแนน -->
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                     <hr>
-
-                    <div class="col text-center">
-
-                        <br>
-                        <br>
-
-                        <input type="hidden" name="Y" value="<?php echo $_POST['Y'] ?>">
-                        <input type="hidden" name="course" value="<?php echo $_POST['course'] ?>">
-                        <input type="hidden" name="year" value="<?php echo $_POST['yearClass'] ?>">
-                        <input type="hidden" name="yearClass" value="<?php echo $_POST['yearClass'] ?>">
-                        <input type="hidden" name="myT" value="<?php echo $_POST['myT'] ?>">
-                        
-
-                        <button name="btnSave" class="btn btn-primary btn-sm w-50">บันทึกคะแนน</button>
-                    </div>
 
                     <br>
                     <br>
