@@ -4,7 +4,37 @@
 <?php if(isset($_POST['btnSavePassword'])) TeacherActionClass::updatePassword($_SESSION['uid'], $_POST['password']);?>
 
 <div class="container">
+    
     <div class="row">
+        <div class="col-12">
+        <?php 
+            $year = isset($_POST['myYear']) ? $_POST['myYear'] : (intval(date('Y')) + 543);
+        ?>
+        <label for="">ค้นหาปีคะแนนประเมินการสอน</label>
+        <form action="" method="post" class="d-flex">
+            <input type="number" name="myYear" class="form-control w-25 form-control-sm" value="<?php echo $year?>">
+            <button type="submit" class="btn btn-success btn-sm">เลือก</button>
+        </form>
+        <?php
+            $sql = "SELECT * FROM teacher_rate_data WHERE tc_id = ? AND year = ?";
+            $te = TeacherActionClass::getDataID($_SESSION['uid']);
+            $data = array($te[0]['Tc_id'], $year);
+            $request = db_connect::getExecute($sql, $data);
+            $i = 0;
+            $c = count($request) * 5;
+            if(count($request) > 0){
+                foreach($request as $key=>$item){
+                    $i += floatval($item['rate']) * 5;
+                }
+            }
+        ?>
+        <?php if($i !== 0):?>
+        <br>
+        1.0=ดี | 2.0=ดีมาก | 3.0=ปานกลาง | 4.0=เยี่ยม | 5.0=ยอดเยี่ยม
+        <h3 class="text-success"><small>ปี พ.ศ. <?php echo $year ?> คะแนนประเมินการสอนได้ </small> (<?php echo number_format(($i/$c), 1)?>) </h3>
+        <?php endif; ?>
+        </div>
+
         <div class="col-4 border shadow-sm p-3 m-1">
 
             <form action="" method="POST" enctype="multipart/form-data" class="mt-3">

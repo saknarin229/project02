@@ -68,6 +68,7 @@ if (isset($_POST['yearClass'])) $getyearClass = $_POST['yearClass'];
                             <td><small style="font-size: 12px;"><strong>รวม</strong></small></td>
                             <td><small style="font-size: 12px;"><strong>คะแนน</strong></small></td>
                             <th>เกรด</th>
+                            <td><small style="font-size: 12px;"><strong>ประเมิณ TC</strong></small></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -107,6 +108,11 @@ if (isset($_POST['yearClass'])) $getyearClass = $_POST['yearClass'];
                                 ?>
                                 <td>
                                     <?php echo $GPA ?>
+                                </td>
+                                <td class="text-center">
+                                    <a href="?op=student-rate&cID=<?php echo $getCourse[0]['course_id'] ?>&Yc=<?php echo $_POST['yearClass']?>&yearclassID=<?php echo $_POST['yearclassID']?>">
+                                        <i class="fa-solid fa-user-plus"></i>
+                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

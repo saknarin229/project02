@@ -47,7 +47,7 @@ if (isset($_POST['myT'])) $myT = $_POST['myT'];
         </div>
     </div>
 
-    <?php if (isset($_POST['Y'])) : ?>
+    <?php if (isset($_POST['Y']) && isset($_POST['course'])) : ?>
         <br><br>
         <strong>**สถานะคะแนน (ร , มส , คะแนน) หากคะแนนไม่ถึงเกณฑ์ระบบจะตัดเกรดเป็น ไม่ผ่าน</strong>
         <br><br>
